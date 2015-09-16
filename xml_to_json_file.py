@@ -11,9 +11,9 @@ from process_util import *
 
 
 XML_FILE = '../beijing_china.osm'
-NODE_NAME_FILE = 'node_names'
-WAY_NAME_FILE = 'way_names'
-ABREVIATED_FILE = 'abreviated'
+NODE_NAME_FILE = 'words_mappings/node_names'
+WAY_NAME_FILE = 'words_mappings/way_names'
+ABREVIATED_FILE = 'words_mappings/abreviated'
 node_name_mapping = read_mapping(NODE_NAME_FILE)
 way_name_mapping = read_mapping(WAY_NAME_FILE)
 abreviated_mapping = read_mapping(ABREVIATED_FILE)
