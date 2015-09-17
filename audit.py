@@ -139,6 +139,6 @@ if __name__ == '__main__':
     colon_keys = find_single_colon(sort_key)
     print 'First 100 tag element containing names:'
     node_keys = get_node_tags_key_value(root)
-    print node_keys[:20]
+    print node_keys[:100]
     print '***********************************************************'
     print '\n'        
