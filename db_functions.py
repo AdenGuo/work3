@@ -6,9 +6,13 @@ Created on Sat Sep 12 16:13:41 2015
 """
 import json
 import codecs
+import re
+import datetime
 
 JSON_FILE = '../beijing_china.osm.json'
 DB_NAME = 'examples'
+time_reg = re.compile(r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$')
+
 
 def get_db(db_name):
     from pymongo import MongoClient
@@ -38,13 +42,11 @@ def aggregate(db, pipeline):
     result = db.cities.aggregate(pipeline)
     return result
 
-
-
-
 def insert_maps(infile, db_name):
-    db = get_db(db_name)
     data = process_file(infile)
-    db.beijing_maps.insert_many(data)
+    all_collection = get_collections(db_name)
+    all_collection.remove({})
+    all_collection.insert_many(data)
 
 def process_file(filename):
     result = []
@@ -53,3 +55,8 @@ def process_file(filename):
             result.append(json.loads(line.strip()))
     return result
 
+def get_unique_time(collection):
+    time_string_list = collection.distinct('timestamp')
+    result = [datetime.strptime(date_string, '%Y-%m-%dT%H:%M:%SZ') for \
+              date_string in time_string_list]
+    return result

@@ -231,7 +231,7 @@ def shape_relation(element):
     Return of the function will be a dictionary.
     '''       
     result = dict()
-    result['type'] = 'way'
+    result['type'] = 'relation'
     result['changeset'] = element.attrib['changeset']
     result['id'] = element.attrib['id']
     result['timestamp'] = element.attrib['timestamp']
