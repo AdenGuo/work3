@@ -1,1 +1,6 @@
+Map download at https://mapzen.com/data/metro-extracts
+Map download address https://s3.amazonaws.com/metro-extracts.mapzen.com/beijing_china.osm.bz2
+Open street map wiki http://wiki.openstreetmap.org/wiki/Main_Page
 Charts are produced by https://www.lucidchart.com/
+MongoDB manual https://docs.mongodb.org/manual/
+Time frequency plot http://stackoverflow.com/questions/29672375/histogram-in-matplotlib-time-on-x-axis
