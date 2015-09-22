@@ -12,6 +12,7 @@ import datetime
 JSON_FILE = '../beijing_china.osm.json'
 DB_NAME = 'examples'
 TIME_FREQUENCY_PNG = 'figures/updating_frequency.png'
+USER_UPDATING_PNG = 'figures/user_updating_frequency.png'
 time_reg = re.compile(r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$')
 
 
@@ -81,3 +82,15 @@ if __name__ == '__main__':
     all_collections = get_collections(DB_NAME)
     unique_times = get_unique_time_sorted(all_collections)
     plot_timestamp_png(all_collections,TIME_FREQUENCY_PNG)
+    pipeline = [{'$group':{'_id':'$user',
+                       'count':{'$sum':1}}},
+                {'$match':{'count':{'$lt':200}}} 
+               ]
+    count_list = [item['count'] for item in \
+                  list(aggregate(all_collections, pipeline))]
+    import matplotlib.pyplot as plt
+    fig, ax = plt.subplots(1,1)
+    ax.hist(count_list, bins=50, color='red')
+    ax.set_xlabel('Updating Count',size = 'x-large')
+    ax.set_ylabel('Frequency',size = 'x-large')
+    fig.savefig(USER_UPDATING_PNG, dpi=1000) 
