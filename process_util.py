@@ -13,6 +13,9 @@ Following is the regular expression match differenct kinds of strings.
 two_colons_reg = re.compile(r'^([a-z]|_|[0-9])*:([a-z]|_|[0-9])*:([a-z]|_|[0-9])*$')
 lower_reg = re.compile(r'^([a-z]|_|[0-9])*$')
 colon_reg = re.compile(r'^([a-z]|_|[0-9])*:([a-z]|_|[0-9])*$')
+WAY_NAME_FILE = '../way_names'
+NODE_NAME_FILE = '../node_names'
+pinyin_reg = re.compile(r'^[\da-z A-Z]+$')
 
 def download_file(url, file_out):
     '''
@@ -81,3 +84,11 @@ def mapping_name(string, name_mapping):
         return name_mapping[string]
     else:
         return string
+
+def read_word_list(filename):
+    with codecs.open(filename, "r") as fo:
+        result = [string.strip() for string in fo]
+    return result
+
+def count_map(regex, string_list):
+    return sum([1 for string in string_list if re.search(regex, string)])
