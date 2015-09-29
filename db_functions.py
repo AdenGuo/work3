@@ -88,7 +88,7 @@ def plot_datetime_hist_png(datetime_list,png_filename, labels):
 
 def plot_timestamp_png(collection,png_filename):
     date_string_list = get_all_timestamp_string_list(collection)
-    plot_datetime_hist_png(date_string_list, png_filename)
+    plot_datetime_hist_png(date_string_list, png_filename, ['Date', 'Frequency of Total Updating Counts'])
 
 
 
