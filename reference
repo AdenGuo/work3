@@ -1,5 +1,6 @@
 Map download at https://mapzen.com/data/metro-extracts
 Map download address https://s3.amazonaws.com/metro-extracts.mapzen.com/beijing_china.osm.bz2
+Names of entities from http://map.baidu.com/
 Open street map wiki http://wiki.openstreetmap.org/wiki/Main_Page
 Charts are produced by https://www.lucidchart.com/
 MongoDB manual https://docs.mongodb.org/manual/
