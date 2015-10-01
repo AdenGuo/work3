@@ -11,5 +11,7 @@ The folder lesson_6_quizzes contains Python code for Lesson 6 quizzes. Other cod
 
 introduction is a text file containing link and description of the area I chose to wrangle with. And The reason I chose Beijing is in this file.
 
+sample_beijing.osm is the sample file of map of Beijing.
+
 reference is a text file containing link to resources that I used in this project. 
 
