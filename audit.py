@@ -103,42 +103,38 @@ def get_node_tags_key_value(element):
 if __name__ == '__main__':
     filename = '../beijing_china.osm'
     root = get_root(filename)
-    print '\n'
     print '***********************************************************'   
     print 'Problem 1: inconsistency in keys' 
     node_tag_key_count = get_node_tags_key(root)
     sort_key = sorted(node_tag_key_count, key=node_tag_key_count.get)
     unicode_keys = find_unicode_list(sort_key)
-    print 'Unicode keys in the "tag" element are:'
-    print unicode_keys
+    print 'First 2 unicode keys in the "tag" element are:'
+    print unicode_keys[:2]
     print '-----------------------------------------------------------' 
     hyphen_keys = find_hyphen_list(sort_key)
-    print 'Strings containing hyphen are:'
-    print hyphen_keys
+    print 'First 2 strings containing hyphen are:'
+    print hyphen_keys[:2]
     print '-----------------------------------------------------------'   
     upper_keys = find_uppercase_list(sort_key)
-    print 'Strings containing uppercase letters or abbreviated words are:'
-    print upper_keys
+    print 'First 2 strings containing uppercase letters or abbreviated words are:'
+    print upper_keys[:2]
     print '***********************************************************'
-    print '\n'
     print '\n'
     print '***********************************************************'   
     print 'Problem 2: colon(s) in keys' 
     colon_keys = find_single_colon(sort_key)
-    print 'Strings containing single colon:'
-    print colon_keys
+    print 'First 2 strings containing single colon:'
+    print colon_keys[:2]
     print '-----------------------------------------------------------' 
     double_colon_keys = find_double_colon(sort_key)
-    print 'Strings containing duoble colons:'
-    print double_colon_keys
+    print 'First 2 strings containing duoble colons:'
+    print double_colon_keys[:2]
     print '***********************************************************'    
-    print '\n'
-    print '\n'    
+    print '\n'  
     print '***********************************************************'
     print 'Problem 3: pinyin as names' 
     colon_keys = find_single_colon(sort_key)
-    print 'First 100 tag element containing names:'
+    print 'One tag element containing name in pinyin:'
     node_keys = get_node_tags_key_value(root)
-    print node_keys[:100]
+    print node_keys[8]
     print '***********************************************************'
-    print '\n'        
