@@ -895,7 +895,7 @@ examples
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="3.1-Incompleteness-and-Inconsistency">3.1 Incompleteness and Inconsistency<a class="anchor-link" href="#3.1-Incompleteness-and-Inconsistency">&#182;</a></h2>
+<h2 id="3.1-Inconsistency-of-Languages-and-Localization-of-Map-Data">3.1 Inconsistency of Languages and Localization of Map Data<a class="anchor-link" href="#3.1-Inconsistency-of-Languages-and-Localization-of-Map-Data">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -904,63 +904,7 @@ examples
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The map is far from finishing. There are many entities missing. More data is needed to make the map useful. Too few independent nodes are included in the map. There are total 605204 nodes in the map. Only 9610 have a name. Let us see how many nodes are used in defining a way instead of independent entities.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">pipeline</span> <span class="o">=</span> <span class="p">[{</span><span class="s">&#39;$match&#39;</span><span class="p">:{</span><span class="s">&#39;type&#39;</span><span class="p">:</span><span class="s">&#39;way&#39;</span><span class="p">}},</span>
-            <span class="p">{</span><span class="s">&#39;$unwind&#39;</span> <span class="p">:</span> <span class="s">&#39;$nodes&#39;</span><span class="p">},</span>
-            <span class="p">{</span><span class="s">&#39;$group&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s">&#39;_id&#39;</span><span class="p">:</span><span class="s">&#39;$nodes&#39;</span><span class="p">}}</span>           
-       <span class="p">]</span>
-<span class="k">print</span> <span class="s">&#39;The number of nodes used in  defining ways is &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">aggregate</span><span class="p">(</span><span class="n">all_collections</span><span class="p">,</span> <span class="n">pipeline</span><span class="p">))))</span> <span class="o">+</span> <span class="s">&#39;.&#39;</span>
-<span class="k">print</span> <span class="s">&#39;Total number of nodes is &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">all_collections</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s">&#39;type&#39;</span><span class="p">:</span><span class="s">&#39;node&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">count</span><span class="p">())</span> <span class="o">+</span> <span class="s">&#39;.&#39;</span>
-<span class="k">print</span> <span class="s">&#39;Number of independent nodes is &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">all_collections</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s">&#39;type&#39;</span><span class="p">:</span><span class="s">&#39;node&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> \
-                                              <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">aggregate</span><span class="p">(</span><span class="n">all_collections</span><span class="p">,</span> <span class="n">pipeline</span><span class="p">))))</span> <span class="o">+</span> <span class="s">&#39;.&#39;</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>The number of nodes used in  defining ways is 596448.
-Total number of nodes is 605204.
-Number of independent nodes is 8756.
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Apparently, 8756 nodes is highly insufficient describing a huge city like Beijing. There are total 17124 named ways in this may, I believe this would roughly enough. Based on this conclusion, I suggest that collecting information of nodes(entities) on this map is priority.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The names of nodes and ways are very important. The names in the map of Beijing should be in Chinese character instead of pinyin which is the official phonetic system of the Mandarin. Pinyin is meaningless in writing or printing the Mandarin.  However, I find many names of pinyin in the map. In other words the names are not consistent.</p>
+<p>I will take names of nodes and ways as example. The names in the map of Beijing should be in Chinese character instead of pinyin which is the official phonetic system of the Mandarin. Pinyin is meaningless in writing or printing the Mandarin. However, I find many names of pinyin in the map. In other words the names are not consistent.</p>
 
 </div>
 </div>
@@ -1007,7 +951,9 @@ Number of pinyin is 721.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Based on the abservation, I recommend ones who make changes to the names to use local language for consistency.</p>
+<p>Based on this example, We can see that some nodes is named in chinese and some in english or pinyin which is not a language. Besides the problem of different languages in names. The most key of tag elements which are most important source of information in the XML file is in english. I think inconsistency of languages prevent the development of Openstreetmap in non-english country. And not all the names of entities or categories can properly represented in English.</p>
+<p>Localization of map data can be implemented by changing structure of data. The tag element could contain multiple sub-elements corresponding to different languages of description for that tag. The names of these sub-elements are the standardized names of the languagea used in both key and value attributes in the corresponding sub-element. The kind of language the tag used can be corporated into data collecting process of OpenStreetMap or examined by a program which can easily identify many different languages.</p>
+<p>However, the modification of data structure must be carried out carefully. First, the new version of data may incompatible with programs which deal with older version of data. This result may effect thousands of user who already use OpenStreetMap. Second, adding language information of tag element introduces more complexity of data. Cleaning of data and processing data will be more complicated than older version. Third, more data is needed for describing a map. Because older version of data blend multiple languages to deliver information. If the information is divided into different languages. The information may loss in single language.</p>
 
 </div>
 </div>
